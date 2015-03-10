@@ -13,9 +13,28 @@
             <h4>CFEH Client Application </h4>
         </div>
         <div class="right">
-            <span class="messages-counter">Messages: <span id="messages-counter-container">0</span></span>
-            <button class="button-success pure-button" id="receive-data">Manual receive data</button>
-            <button class="button-danger pure-button" id="stop-receive-data">Stop auto-receive</button>
+
+            <div>
+
+                <button class="button-success pure-button" id="receive-data">Manual receive data
+                </button>
+                <button class="button-danger pure-button" id="stop-receive-data">Stop auto-receive
+                </button>
+                <button class="button-blue pure-button" id="restore-receive-data">Restart
+                    auto-receive
+                </button>
+
+                <span class="messages-counter">Request status:
+                    <span id="messages-status-container" class="red">
+                        no new messages
+                    </span>
+                </span>
+
+                <span class="messages-counter">Messages (total):
+                    <span id="messages-counter-container">0</span>
+                </span>
+            </div>
+
         </div>
         <div class="clear"></div>
     </section>

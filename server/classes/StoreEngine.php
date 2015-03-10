@@ -17,7 +17,7 @@ class StoreEngine implements StoreEngineInterface {
         $this->data = file_get_contents('messages.txt');
 
         // clear queue file
-        file_put_contents('messages.txt', NULL, LOCK_EX);
+//        file_put_contents('messages.txt', NULL, LOCK_EX);
         return $this->data;
     }
 
