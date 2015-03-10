@@ -25,13 +25,12 @@ class ServerClass {
             // message is ok, we can format it and store into store engine
             $message = $this->formatter->formatMessage($message);
             $this->storeEngine->saveData($message);
-//            var_dump($message);
         }
     }
 
     public function sendData() {
-        $data = $this->storeEngine->loadData();
-
+        $data = trim($this->storeEngine->loadData());
+        //send data to client
         header("Content-type: application/text");
         echo $data;
     }
@@ -59,6 +58,5 @@ class ServerClass {
             default:
                 break;
         }
-
     }
 }

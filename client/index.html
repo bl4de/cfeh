@@ -2,14 +2,33 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/pure.css"/>
+    <link rel="stylesheet" href="style/style.css"/>
     <title>CFEH Client Application</title>
 </head>
 <body>
 <div class="container">
+    <section class="header">
+        <div class="left">
+            <h4>CFEH Client Application </h4>
+        </div>
+        <div class="right">
+            <span class="messages-counter">Messages: <span id="messages-counter-container">0</span></span>
+            <button class="button-success pure-button" id="receive-data">Receive data</button>
+        </div>
+        <div class="clear"></div>
+    </section>
+
+    <section class="data">
+        dane
+    </section>
+
+
     <div class="data"></div>
 </div>
 
 <script src="js/libs/jx.js"></script>
+<script src="js/ClientApplication.js"></script>
 <script src="js/client.js"></script>
 </body>
 </html>

@@ -14,6 +14,7 @@ class StoreEngine implements StoreEngineInterface {
 
     public function loadData() {
         $this->data = file_get_contents('messages.txt');
+        file_put_contents('messages.txt', NULL);
         return $this->data;
     }
 

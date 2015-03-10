@@ -15,8 +15,7 @@ class FormatterClass implements FormatterInterface {
     }
 
     public function formatMessage($message) {
-        $formattedMessage = "";
-        $formattedMessage .= $message->userId . $this->separator . $message->currencyFrom . $this->separator
+        $formattedMessage = $message->userId . $this->separator . $message->currencyFrom . $this->separator
             . $message->currencyTo . $this->separator . $message->amountSell . $this->separator
             . $message->amountBuy . $this->separator
             . $message->rate . $this->separator . $message->timePlaced
