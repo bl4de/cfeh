@@ -1,6 +1,13 @@
 # cfeh
 CF engineering test
 
+Used external libraries:
+
+server: none
+client: Jasmine (BDD), jx.js (simple XMLHttpRequest wrapper), Pure (CSS framework)
+
+
+
 ##server:
 
 http://DOCUMENT_ROOT/server/server.php
