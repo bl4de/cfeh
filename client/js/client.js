@@ -7,3 +7,4 @@ var Application = new ClientApplication();
 
 // run Application
 Application.init();
+Application.receive();

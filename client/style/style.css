@@ -37,9 +37,17 @@ body {
     float: left;
 }
 
-.button-success {
+.button-success,
+.button-danger {
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
     background: rgb(28, 184, 65);
+}
+
+.button-danger {
+    background: rgb(202, 60, 60);
 }

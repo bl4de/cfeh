@@ -7,18 +7,21 @@ function ClientApplication() {
 
     var dataContainer = document.querySelector(".data"),
         receiveDataBtn = document.querySelector("#receive-data"),
+        stopReceiveDataBtn = document.querySelector("#stop-receive-data"),
         counterContainer = document.querySelector("#messages-counter-container"),
         messages = [],
         messagesCounter = 0,
+        cid = 0,    // interval ID
         _self = this;
 
     this.init = function () {
         receiveDataBtn.addEventListener("click", _self.receiveData);
+        stopReceiveDataBtn.addEventListener("click", _self.stopReceive);
     };
 
     this.proceedMessage = function (message) {
-        // we expected that valid message contains 8 elements
         message = message.split('#');
+        // we expected that valid message contains 8 elements
         if (message.length === 8) {
             messagesCounter++;
             messages.push(message);
@@ -39,4 +42,14 @@ function ClientApplication() {
     this.receiveData = function () {
         jx.load('../server/server.php', _self.proceedData);
     };
+
+    this.receive = function() {
+        cid = setInterval( _self.receiveData, 100);
+    };
+
+    this.stopReceive = function() {
+        if (cid > 0) {
+            clearInterval(cid);
+        }
+    }
 };
