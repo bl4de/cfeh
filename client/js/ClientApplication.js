@@ -44,12 +44,15 @@ function ClientApplication() {
 		__messages = __messages.length > 0 ? __messages.slice(0, __messages.length) : __messages;
 		if (__messages.length > 0) {
 			__messages.map(_self.proceedMessage);
-			_self.setStatus('RECEIVED', __messages.length);
+			if (__messages.length  > 0 && __messages[0]) {
+				_self.setStatus('RECEIVED', __messages.length);
+			} else {
+				_self.setStatus('NO_NEW_MESSAGES');
+			}
 		} else {
 			_self.setStatus('NO_NEW_MESSAGES');
 		}
 
-		console.log(messages);
 		if (_self.dataPresenter) {
 			_self.dataPresenter.prepareData(messages);
 		}
