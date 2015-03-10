@@ -18,7 +18,7 @@ describe("ClientApplication sample test suite", function () {
 			expect(__messages.length).toEqual(6);
 		});
 
-		it("valid message should be added to messages array", function () {
+		it("valid message should be parsed and added to messages array", function () {
 			expect(client.proceedMessage(__messages[0])).toBeTruthy();
 		});
 	});

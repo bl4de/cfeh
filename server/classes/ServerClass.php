@@ -20,7 +20,6 @@ class ServerClass {
     // as we are not exposed some interface outside,
     // a few of methods are declared as protected
     protected function processMessage($message) {
-
         if (true === $this->validator->validateMessage($message)) {
             // message is ok, we can format it and store into store engine
             $message = $this->formatter->formatMessage($message);
