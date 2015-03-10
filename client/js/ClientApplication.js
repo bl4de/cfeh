@@ -6,11 +6,11 @@ function ClientApplication() {
 	"use strict";
 
 	// variables declarations
-	var receiveDataBtn = document.querySelector("#receive-data"),
-		stopReceiveDataBtn = document.querySelector("#stop-receive-data"),
-		restoreReceiveDataBtn = document.querySelector("#restore-receive-data"),
-		counterContainer = document.querySelector("#messages-counter-container"),
-		messagesStatus = document.querySelector("#messages-status-container"),
+	var receiveDataBtn = document.querySelector("#receive-data") || null,
+		stopReceiveDataBtn = document.querySelector("#stop-receive-data") || null,
+		restoreReceiveDataBtn = document.querySelector("#restore-receive-data") || null,
+		counterContainer = document.querySelector("#messages-counter-container") || null,
+		messagesStatus = document.querySelector("#messages-status-container") || null,
 		messages = [],
 		messagesCounter = 0,
 		cid = 0,    // interval ID
@@ -22,10 +22,18 @@ function ClientApplication() {
 
 		this.dataPresenter = dataPresenter || false;
 
-		receiveDataBtn.addEventListener("click", _self.receiveData);
-		receiveDataBtn.setAttribute("disabled", "disabled");
-		restoreReceiveDataBtn.addEventListener("click", _self.receive);
-		stopReceiveDataBtn.addEventListener("click", _self.stopReceive);
+		if (receiveDataBtn) {
+			receiveDataBtn.addEventListener("click", _self.receiveData);
+			receiveDataBtn.setAttribute("disabled", "disabled");
+		}
+
+		if (restoreReceiveDataBtn) {
+			restoreReceiveDataBtn.addEventListener("click", _self.receive);
+		}
+
+		if (stopReceiveDataBtn) {
+			stopReceiveDataBtn.addEventListener("click", _self.stopReceive);
+		}
 
 		this.setStatus('NO_NEW_MESSAGES');
 	};
@@ -36,15 +44,19 @@ function ClientApplication() {
 		if (message.length === 8) {
 			messagesCounter++;
 			messages.push(message);
+			return true;
 		}
+		return false;
 	};
 
 	this.proceedData = function (data) {
 		var __messages = data.split('\n');
-		__messages = __messages.length > 0 ? __messages.slice(0, __messages.length) : __messages;
+
+		__messages = __messages.length > 0 ? __messages.slice(0, __messages.length - 1) : __messages;
+
 		if (__messages.length > 0) {
 			__messages.map(_self.proceedMessage);
-			if (__messages.length  > 0 && __messages[0]) {
+			if (__messages.length > 0 && __messages[0]) {
 				_self.setStatus('RECEIVED', __messages.length);
 			} else {
 				_self.setStatus('NO_NEW_MESSAGES');
@@ -56,7 +68,10 @@ function ClientApplication() {
 		if (_self.dataPresenter) {
 			_self.dataPresenter.prepareData(messages);
 		}
-		counterContainer.innerHTML = messagesCounter;
+		if (counterContainer) {
+			counterContainer.innerHTML = messagesCounter;
+		}
+		return __messages;
 	};
 
 	this.receiveData = function () {
@@ -88,6 +103,10 @@ function ClientApplication() {
 	};
 
 	this.setStatus = function (status, counter) {
+		if (!messagesStatus) {
+			return false;
+		}
+
 		var requestStatus = {
 			NO_NEW_MESSAGES: "no new messages",
 			RECEIVED: "received NUMBER messages"
