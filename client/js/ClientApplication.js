@@ -6,22 +6,22 @@ function ClientApplication() {
 	"use strict";
 
 	// variables declarations
-	var dataContainer = document.querySelector(".data"),
-		receiveDataBtn = document.querySelector("#receive-data"),
+	var receiveDataBtn = document.querySelector("#receive-data"),
 		stopReceiveDataBtn = document.querySelector("#stop-receive-data"),
 		restoreReceiveDataBtn = document.querySelector("#restore-receive-data"),
 		counterContainer = document.querySelector("#messages-counter-container"),
 		messagesStatus = document.querySelector("#messages-status-container"),
 		messages = [],
-
-
 		messagesCounter = 0,
 		cid = 0,    // interval ID
 		_self = this;
 
 
 	// methods
-	this.init = function () {
+	this.init = function (dataPresenter) {
+
+		this.dataPresenter = dataPresenter || false;
+
 		receiveDataBtn.addEventListener("click", _self.receiveData);
 		receiveDataBtn.setAttribute("disabled", "disabled");
 		restoreReceiveDataBtn.addEventListener("click", _self.receive);
@@ -47,6 +47,11 @@ function ClientApplication() {
 			_self.setStatus('RECEIVED', __messages.length);
 		} else {
 			_self.setStatus('NO_NEW_MESSAGES');
+		}
+
+		console.log(messages);
+		if (_self.dataPresenter) {
+			_self.dataPresenter.prepareData(messages);
 		}
 		counterContainer.innerHTML = messagesCounter;
 	};

@@ -10,24 +10,24 @@
 // sample implementation of store engine - save to file
 // other implementations: database
 class StoreEngine implements StoreEngineInterface {
-    private $data;
+	private $data;
 
-    public function loadData() {
-        // get data from queue file
-        $this->data = file_get_contents('messages.txt');
+	public function loadData() {
+		// get data from queue file
+		$this->data = file_get_contents('messages.txt');
 
-        // clear queue file
-//        file_put_contents('messages.txt', NULL, LOCK_EX);
-        return $this->data;
-    }
+		// clear queue file
+		file_put_contents('messages.txt', NULL, LOCK_EX);
+		return $this->data;
+	}
 
-    public function saveData($data) {
-        // save message to queue file
-        file_put_contents('messages.txt', $data, FILE_APPEND | LOCK_EX);
-    }
+	public function saveData($data) {
+		// save message to queue file
+		file_put_contents('messages.txt', $data, FILE_APPEND | LOCK_EX);
+	}
 
-    public function __construct() {
+	public function __construct() {
 
-    }
+	}
 
 }

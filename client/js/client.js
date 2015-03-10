@@ -3,8 +3,9 @@
  */
 
 // create Client application
-var Application = new ClientApplication();
+var Application = new ClientApplication(),
+	DataPresenter = new DataPresenter();
 
 // run Application
-Application.init();
+Application.init(DataPresenter);
 Application.receive();
