@@ -1,21 +1,21 @@
-# cfeh
-CF engineering test
+# CF engineering test
 
-Used external libraries:
+###Used external libraries:
 
-server: none
-client: Jasmine (BDD), jx.js (simple XMLHttpRequest wrapper), Pure (CSS framework)
+Jasmine (BDD), jx.js (simple XMLHttpRequest wrapper), Pure (CSS framework)
 
 
+# paths
 
-##server:
+
+###server:
 
 http://DOCUMENT_ROOT/server/server.php
 
-##client:
+###client:
 
 http://DOCUMENT_ROOT/client/index.html
 
-##client tests:
+###client tests:
 
 http://DOCUMENT_ROOT/tests/frontend/jasmine/SpecRunner.html
